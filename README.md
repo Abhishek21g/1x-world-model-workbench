@@ -20,6 +20,12 @@ Draft PR opened against `1x-technologies/1xgpt`:
 
 ## Tools
 
+Open the launch site locally:
+
+```sh
+open site/index.html
+```
+
 Audit the local upstream checkout for action-conditioning evidence:
 
 ```sh
@@ -64,6 +70,7 @@ python3 workbench/demo_report.py \
 
 ## Reports
 
+- [`site/index.html`](site/index.html)
 - [`docs/ACTION_CONDITIONING_GAP.md`](docs/ACTION_CONDITIONING_GAP.md)
 - [`docs/MINIMAL_ACTION_INTERFACE.md`](docs/MINIMAL_ACTION_INTERFACE.md)
 - [`docs/USEFULNESS_ASSESSMENT.md`](docs/USEFULNESS_ASSESSMENT.md)

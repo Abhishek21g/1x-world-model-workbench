@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Run receipts, rollout inspection, and action-conditioning audits for the public 1X world-model challenge.">
+  <title>1X World Model Workbench</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="1X World Model Workbench home">
+      <span class="brand-mark">1X</span>
+      <span>World Model Workbench</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#demo">Demo</a>
+      <a href="#audit">Audit</a>
+      <a href="#artifacts">Artifacts</a>
+    </nav>
+    <a class="nav-action" href="https://github.com/1x-technologies/1xgpt/pull/29">Upstream PR</a>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">
+          <span>1X World</span>
+          <span>Model</span>
+          <span>Workbench</span>
+        </h1>
+        <p class="hero-text">Run receipts, rollout inspection, and action-conditioning audits for the public 1X world-model challenge.</p>
+        <div class="hero-actions" aria-label="Primary actions">
+          <a class="button primary" href="#demo">Open demo</a>
+          <a class="button secondary" href="#audit">View audit</a>
+        </div>
+      </div>
+
+      <div class="product-shell" aria-label="Workbench preview">
+        <div class="toolbar">
+          <span>rollout inspection</span>
+          <span>video-only baseline</span>
+        </div>
+        <div class="rollout-grid">
+          <article>
+            <h2>Prompt</h2>
+            <img src="../examples/rollout_demo/prompt/prompt_00.svg" alt="Schematic prompt frame">
+          </article>
+          <article>
+            <h2>Generated</h2>
+            <img src="../examples/rollout_demo/generated/generated_01.svg" alt="Schematic generated frame">
+          </article>
+          <article>
+            <h2>Ground Truth</h2>
+            <img src="../examples/rollout_demo/ground_truth/ground_truth_01.svg" alt="Schematic ground-truth frame">
+          </article>
+        </div>
+        <div class="product-lower">
+          <section class="receipt-panel">
+            <h2>Eval receipt</h2>
+            <table>
+              <tbody>
+                <tr><th>loss</th><td>8.7900</td></tr>
+                <tr><th>acc</th><td>0.0320</td></tr>
+                <tr><th>LPIPS</th><td>0.2070</td></tr>
+              </tbody>
+            </table>
+          </section>
+          <section class="audit-panel">
+            <h2>Action audit</h2>
+            <p>Actions are public in the dataset surface; the GENIE baseline remains video-only.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="section modules" aria-labelledby="does-title">
+      <div class="section-heading">
+        <h2 id="does-title">What it does</h2>
+        <p>A compact contributor layer for turning challenge runs into inspectable artifacts.</p>
+      </div>
+      <div class="module-grid">
+        <article>
+          <h3>Run receipts</h3>
+          <p>Capture command, checkpoint, dataset, git SHA, external-data notes, FLOPs fields, and metrics in one reproducible report.</p>
+        </article>
+        <article>
+          <h3>Rollout inspection</h3>
+          <p>Review prompt, generated, and ground-truth media side by side with failure tags for object consistency, contact, and action mismatch.</p>
+        </article>
+        <article>
+          <h3>Action gap audit</h3>
+          <p>Trace where public actions are described, where <code>actions.bin</code> is recognized, and where the baseline drops action tensors.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section split" id="audit" aria-labelledby="audit-title">
+      <div>
+        <h2 id="audit-title">Why it matters</h2>
+        <p>The public challenge is about evaluating robot futures. The strongest contribution is not a toy model; it is tooling that helps outsiders reproduce runs, inspect generated futures, and reason about the public action-conditioning gap without overclaiming private 1X knowledge.</p>
+      </div>
+      <div class="evidence-table" role="table" aria-label="Action-conditioning evidence">
+        <div role="row"><span role="cell">Dataset exposes raw actions</span><strong role="cell">yes</strong></div>
+        <div role="row"><span role="cell">GENIE baseline uses actions</span><strong role="cell">no</strong></div>
+        <div role="row"><span role="cell">Action path documented</span><strong role="cell">partial</strong></div>
+        <div role="row"><span role="cell">Contributor workbench visible publicly</span><strong role="cell">not found</strong></div>
+      </div>
+    </section>
+
+    <section class="section demo-band" id="demo" aria-labelledby="demo-title">
+      <div class="section-heading">
+        <h2 id="demo-title">Launch demo</h2>
+        <p>Static, reviewable artifacts that work without a GPU or the full dataset.</p>
+      </div>
+      <div class="demo-links">
+        <a href="../reports/demo/index.html">Combined demo report</a>
+        <a href="../reports/demo/rollout_inspector.html">Rollout inspector</a>
+        <a href="../reports/ACTION_CONDITIONING_AUDIT.md">Action audit</a>
+      </div>
+    </section>
+
+    <section class="section artifacts" id="artifacts" aria-labelledby="artifact-title">
+      <div class="section-heading">
+        <h2 id="artifact-title">Current artifacts</h2>
+        <p>Built around the public repo, with conservative claims and reproducible commands.</p>
+      </div>
+      <div class="artifact-list">
+        <a href="https://github.com/1x-technologies/1xgpt/pull/29">
+          <span>Upstream PR</span>
+          <strong>Fix teacher-forced generation mask token</strong>
+        </a>
+        <a href="../docs/MINIMAL_ACTION_INTERFACE.md">
+          <span>Proposal</span>
+          <strong>Minimal action interface for public-code experiments</strong>
+        </a>
+        <a href="../docs/USEFULNESS_ASSESSMENT.md">
+          <span>Assessment</span>
+          <strong>What is useful, what is not, and what 1X likely already has</strong>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Contributor-facing tooling for the public 1X World Model Challenge. Not affiliated with 1X Technologies.</p>
+  </footer>
+</body>
+</html>
