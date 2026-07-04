@@ -65,7 +65,9 @@ python3 workbench/demo_report.py \
 ## Reports
 
 - [`docs/ACTION_CONDITIONING_GAP.md`](docs/ACTION_CONDITIONING_GAP.md)
+- [`docs/USEFULNESS_ASSESSMENT.md`](docs/USEFULNESS_ASSESSMENT.md)
 - [`reports/ACTION_CONDITIONING_AUDIT.md`](reports/ACTION_CONDITIONING_AUDIT.md)
+- [`reports/PUBLIC_SURFACE_SCAN.md`](reports/PUBLIC_SURFACE_SCAN.md)
 - [`reports/demo/index.html`](reports/demo/index.html)
 
 ## Local-Only Files
