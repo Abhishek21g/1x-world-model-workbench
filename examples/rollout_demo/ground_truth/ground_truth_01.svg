@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="320" viewBox="0 0 512 320">
+  <rect width="512" height="320" fill="#20242a"/>
+  <rect x="0" y="210" width="512" height="110" fill="#6b705c"/>
+  <rect x="50" y="118" width="122" height="92" rx="8" fill="#d9c5a5"/>
+  <circle cx="376" cy="164" r="35" fill="#ccd5ae"/>
+  <path d="M250 236 L306 190 L376 236" fill="none" stroke="#f5f5f5" stroke-width="10" stroke-linecap="round"/>
+  <text x="24" y="42" fill="#fff" font-family="Arial" font-size="24">Ground truth future</text>
+</svg>

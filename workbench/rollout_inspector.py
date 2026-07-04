@@ -6,10 +6,11 @@ from __future__ import annotations
 import argparse
 import html
 import json
+import os
 from pathlib import Path
 
 
-IMAGE_EXTENSIONS = {".gif", ".jpg", ".jpeg", ".png", ".webp"}
+IMAGE_EXTENSIONS = {".gif", ".jpg", ".jpeg", ".png", ".svg", ".webp"}
 
 
 def collect_media(directory: str | None) -> list[Path]:
@@ -31,10 +32,7 @@ def load_tags(path: str | None) -> list[dict[str, str]]:
 
 
 def rel(path: Path, output: Path) -> str:
-    try:
-        return path.resolve().relative_to(output.parent.resolve()).as_posix()
-    except ValueError:
-        return path.resolve().as_posix()
+    return os.path.relpath(path.resolve(), output.parent.resolve())
 
 
 def render_column(title: str, media: list[Path], output: Path) -> str:

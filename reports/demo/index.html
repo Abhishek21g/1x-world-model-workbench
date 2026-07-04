@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1X World Model Workbench Demo</title>
+  <style>
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f6f2; color: #141414; }
+    header { padding: 42px 36px 30px; background: #111; color: white; }
+    header h1 { margin: 0 0 10px; font-size: clamp(30px, 6vw, 58px); line-height: 1; letter-spacing: 0; }
+    header p { margin: 0; max-width: 900px; font-size: 18px; line-height: 1.5; color: #e8e8e8; }
+    main { padding: 28px 36px 52px; max-width: 1180px; margin: 0 auto; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 22px 0 30px; }
+    .panel { background: white; border: 1px solid #d9ddd2; border-radius: 6px; padding: 18px; min-width: 0; }
+    h2 { margin: 0 0 12px; font-size: 22px; }
+    h3 { margin: 0 0 8px; font-size: 15px; color: #555; text-transform: uppercase; letter-spacing: 0; }
+    p, li { line-height: 1.55; }
+    pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #161712; color: #f3f5ec; padding: 14px; border-radius: 6px; font-size: 13px; line-height: 1.45; max-height: 520px; overflow: auto; }
+    a { color: #0b5cad; }
+    .status { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .badge { display: inline-block; padding: 4px 8px; border-radius: 999px; background: #e7f0e0; color: #245323; font-size: 12px; font-weight: 700; }
+    @media (max-width: 900px) { .grid, .status { grid-template-columns: 1fr; } header, main { padding-left: 18px; padding-right: 18px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>1X World Model Workbench</h1>
+    <p>A reproducibility layer for the public 1X world-model challenge: eval receipts, rollout inspection, and an evidence-backed audit of the public action-conditioning gap.</p>
+  </header>
+  <main>
+    <section class="grid">
+      <div class="panel">
+        <h3>Upstream</h3>
+        <p><span class="badge">Open PR</span></p>
+        <p><a href="https://github.com/1x-technologies/1xgpt/pull/29">1xgpt#29</a> fixes the teacher-forced generation mask token path.</p>
+      </div>
+      <div class="panel">
+        <h3>Audit</h3>
+        <p>The scanner traces where public action data is described, where `actions.bin` is recognized, and where the baseline drops action tensors.</p>
+      </div>
+      <div class="panel">
+        <h3>Demo</h3>
+        <p>The rollout inspector creates a static review page for prompt/generated/ground-truth media and failure tags.</p>
+        <p><a href="rollout_inspector.html">Open rollout inspector artifact</a></p>
+      </div>
+    </section>
+
+    <section class="status">
+      <div class="panel">
+        <h2>Action-Conditioning Audit</h2>
+        <pre><code># 1X Action-Conditioning Audit
+
+Source repo: `upstream/1xgpt`
+
+## Finding
+
+The public `1xgpt` challenge surface includes raw action data and frames the
+eventual evaluation challenge as action-conditioned, but the public GENIE
+baseline is still video-only. The dataset loader constructs an `actions.bin`
+path, yet the action memmap is commented out and no training/generation/eval
+path consumes action tensors.
+
+## Summary
+
+| Check | Result |
+| --- | --- |
+| Dataset constructs an actions path | `yes` |
+| Baseline exposes actions to callers | `no` |
+| Evidence hits | `7` |
+| Code action mentions, excluding argparse boilerplate | `3` |
+
+## Evidence
+
+| Location | Signal | Snippet | Note |
+| --- | --- | --- | --- |
+| `README.md:5` | Dataset advertises raw actions | `To accelerate progress in learned simulators for robots, we&#x27;re announcing the 1X World Model Challenge, where the task is to predict future first-person observations of the [EVE Android](https://www.1x.tech/androids/eve). We provide over 100 hours of vector-quantized image tokens and raw actions collected from operating EVE at 1X offices, baseline world model (GENIE-style), and a frame-level MAGVIT2 autoencoder that compresses images into 16x16 tokens and decodes them back into images.` | The public challenge surface includes action data. |
+| `README.md:207` | Dataset advertises raw actions | `&lt;td&gt;&lt;code itemprop=&quot;description&quot;&gt;A dataset of over 100 hours of compressed image tokens + raw actions across a fleet of EVE robots.&lt;/code&gt;&lt;/td&gt;` | The public challenge surface includes action data. |
+| `README.md:32` | Evaluation challenge is action-conditioned | `- **Evaluation Challenge (upcoming)**: given a set of N policies, $\pi_1, \pi_2, ... \pi_N$, where each policy $\pi_i(a_t|z_t)$ predicts action tokens from image tokens, can you evaluate all of the policies inside a &quot;world model&quot; $p(z_{t+1}|z_t, a_t)$ and tell us the ranked order of which policy is the best?` | The eventual evaluation challenge is framed around action-conditioned world models. |
+| `README.md:49` | GENIE baseline is video-only | `This repo provides an implementation of the spatio-temporal transformer and MaskGIT sampler as described in [Genie: Generative Interactive Environments](https://arxiv.org/abs/2402.15391). Note that this implementation only trains on video sequences, not actions (though it is trivial to add this via an additive embedding).` | The baseline explicitly omits action conditioning. |
+| `README.md:113` | Rules mention prior actions | `4. For the compression challenge, submissions may only use the *prior* actions to the current prompt frame. Submissions can predict subsequent actions autoregressively to improve performance, but these actions will not be provided with the prompt.` | Actions are allowed under challenge rules, but only in a constrained way. |
+| `data.py:45` | Dataset knows actions.bin exists | `for name in [&quot;video&quot;, &quot;segment_ids&quot;, &quot;actions&quot;]]` | The dataset loader constructs an actions.bin path. |
+| `data.py:48` | Action memmap is commented out | `# self.actions = np.memmap(action_tokens_path, dtype=np.uint16, mode=&quot;r&quot;, shape=(self.metadata[&quot;num_images&quot;],))` | The public loader currently drops actions instead of returning them. |
+
+## Action Mentions In Core Code
+
+| Location | Snippet |
+| --- | --- |
+| `data.py:44` | `video_tokens_path, segment_ids_path, action_tokens_path = [data_dir / f&quot;{name}.bin&quot;` |
+| `data.py:45` | `for name in [&quot;video&quot;, &quot;segment_ids&quot;, &quot;actions&quot;]]` |
+| `data.py:48` | `# self.actions = np.memmap(action_tokens_path, dtype=np.uint16, mode=&quot;r&quot;, shape=(self.metadata[&quot;num_images&quot;],))` |
+
+## Workbench Implication
+
+The next useful artifact is a minimal action-path design and rollout inspector:
+
+1. document exactly where `actions.bin` exists and where it is dropped,
+2. propose an optional `include_actions` dataset flag,
+3. preserve action tensors through collators,
+4. expose video-only vs. action-conditioned generation/eval modes clearly,
+5. use rollout inspection to compare futures from the same prompt under
+   different action assumptions.</code></pre>
+      </div>
+      <div class="panel">
+        <h2>Eval Receipt Example</h2>
+        <pre><code># 1X Eval Receipt
+
+Generated: `2026-07-04T21:44:33.080442+00:00`
+
+## Run
+
+| Field | Value |
+| --- | --- |
+| Command | `python genie/evaluate.py --checkpoint_dir 1x-technologies/GENIE_138M --maskgit_steps 2` |
+| Checkpoint | `1x-technologies/GENIE_138M` |
+| Dataset | `data/val_v1.1` |
+| Git SHA | `unknown` |
+| External Data | `none declared` |
+| FLOPs Estimate | `unknown` |
+
+## Metrics
+
+| Metric | Value |
+| --- | --- |
+| `acc` | `0.0320` |
+| `dec_time` | `0.1200` |
+| `gen_time` | `0.0750` |
+| `loss` | `8.7900` |
+| `pred_lpips` | `0.2070` |
+
+## Notes
+
+No additional notes.</code></pre>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

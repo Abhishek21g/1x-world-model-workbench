@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1X rollout smoke inspection</title>
+  <style>
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #151515; background: #f7f7f4; }
+    header { padding: 28px 32px 18px; border-bottom: 1px solid #ddd; background: #fff; }
+    h1 { margin: 0; font-size: 28px; }
+    main { padding: 24px 32px 40px; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: start; }
+    section { min-width: 0; }
+    h2 { font-size: 15px; text-transform: uppercase; letter-spacing: 0; color: #555; }
+    figure { margin: 0 0 14px; padding: 10px; background: #fff; border: 1px solid #ddd; border-radius: 6px; }
+    img { display: block; width: 100%; height: auto; border-radius: 4px; background: #eee; }
+    figcaption { margin-top: 8px; font-size: 12px; color: #666; overflow-wrap: anywhere; }
+    table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #ddd; }
+    th, td { padding: 10px; border-bottom: 1px solid #e6e6e6; text-align: left; vertical-align: top; }
+    .failures { margin-top: 28px; }
+    .empty { color: #777; font-style: italic; }
+    @media (max-width: 850px) { .grid { grid-template-columns: 1fr; } main, header { padding-left: 18px; padding-right: 18px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>1X rollout smoke inspection</h1>
+  </header>
+  <main>
+    <div class="grid">
+      <section><h2>Prompt</h2><figure><img src="../../examples/rollout_demo/prompt/prompt_00.svg" alt="prompt_00.svg"><figcaption>prompt_00.svg</figcaption></figure></section>
+      <section><h2>Generated</h2><figure><img src="../../examples/rollout_demo/generated/generated_01.svg" alt="generated_01.svg"><figcaption>generated_01.svg</figcaption></figure></section>
+      <section><h2>Ground Truth</h2><figure><img src="../../examples/rollout_demo/ground_truth/ground_truth_01.svg" alt="ground_truth_01.svg"><figcaption>ground_truth_01.svg</figcaption></figure></section>
+    </div>
+    <section class="failures">
+      <h2>Failure Tags</h2>
+      <table><thead><tr><th>Frame</th><th>Tag</th><th>Note</th></tr></thead><tbody><tr><td>generated/example_000.gif</td><td>object consistency</td><td>Placeholder tag format for an object disappearing or changing identity.</td></tr><tr><td>generated/example_001.gif</td><td>contact physics</td><td>Placeholder tag format for impossible contact or floating objects.</td></tr></tbody></table>
+    </section>
+  </main>
+</body>
+</html>

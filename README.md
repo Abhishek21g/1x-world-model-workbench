@@ -52,10 +52,21 @@ python3 workbench/rollout_inspector.py \
   --output outputs/rollout_inspector.html
 ```
 
+Build the combined demo page:
+
+```sh
+python3 workbench/demo_report.py \
+  --audit reports/ACTION_CONDITIONING_AUDIT.md \
+  --receipt reports/demo/receipt.md \
+  --rollout-html reports/demo/rollout_inspector.html \
+  --output reports/demo/index.html
+```
+
 ## Reports
 
 - [`docs/ACTION_CONDITIONING_GAP.md`](docs/ACTION_CONDITIONING_GAP.md)
 - [`reports/ACTION_CONDITIONING_AUDIT.md`](reports/ACTION_CONDITIONING_AUDIT.md)
+- [`reports/demo/index.html`](reports/demo/index.html)
 
 ## Local-Only Files
 
