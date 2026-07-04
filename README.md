@@ -20,6 +20,14 @@ Draft PR opened against `1x-technologies/1xgpt`:
 
 ## Tools
 
+Audit the local upstream checkout for action-conditioning evidence:
+
+```sh
+python3 workbench/action_gap_audit.py \
+  --repo upstream/1xgpt \
+  --output reports/ACTION_CONDITIONING_AUDIT.md
+```
+
 Create a reproducible eval receipt from a saved eval log:
 
 ```sh
@@ -47,6 +55,7 @@ python3 workbench/rollout_inspector.py \
 ## Reports
 
 - [`docs/ACTION_CONDITIONING_GAP.md`](docs/ACTION_CONDITIONING_GAP.md)
+- [`reports/ACTION_CONDITIONING_AUDIT.md`](reports/ACTION_CONDITIONING_AUDIT.md)
 
 ## Local-Only Files
 
