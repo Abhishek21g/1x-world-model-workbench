@@ -1,0 +1,12 @@
+[
+  {
+    "frame": "generated/example_000.gif",
+    "label": "object consistency",
+    "note": "Placeholder tag format for an object disappearing or changing identity."
+  },
+  {
+    "frame": "generated/example_001.gif",
+    "label": "contact physics",
+    "note": "Placeholder tag format for impossible contact or floating objects."
+  }
+]

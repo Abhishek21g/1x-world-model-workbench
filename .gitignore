@@ -1,0 +1,21 @@
+upstream/
+.venv/
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+data/
+runs/
+outputs/
+checkpoints/
+*.ckpt
+*.pt
+*.pth
+*.safetensors
+
+# Local agent/operator context. Keep these on disk, not on GitHub.
+.claude/
+.codex/
+agent/
+AGENTS.md
+CLAUDE.md

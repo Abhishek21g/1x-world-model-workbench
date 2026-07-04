@@ -1,0 +1,3 @@
+Generating frame 1
+Generating frame 2
+{'gen_time': '0.0750', 'loss': '8.7900', 'acc': '0.0320', 'dec_time': '0.1200', 'pred_lpips': '0.2070'}
