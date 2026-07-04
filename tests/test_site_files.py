@@ -7,8 +7,8 @@ class SiteFilesTests(unittest.TestCase):
         html = Path("site/index.html").read_text()
 
         self.assertIn("1X World Model Workbench", html)
-        self.assertIn("Run receipts, rollout inspection, and action-conditioning audits", html)
-        self.assertIn("https://github.com/1x-technologies/1xgpt/pull/29", html)
+        self.assertIn("A simple way to inspect 1X world-model runs", html)
+        self.assertIn("https://github.com/Abhishek21g/1x-world-model-workbench", html)
         self.assertIn("../reports/demo/index.html", html)
 
     def test_styles_avoid_absolute_local_paths(self):

@@ -16,9 +16,9 @@
     <nav aria-label="Primary navigation">
       <a href="#demo">Demo</a>
       <a href="#audit">Audit</a>
-      <a href="#artifacts">Artifacts</a>
+      <a href="#about">About</a>
     </nav>
-    <a class="nav-action" href="https://github.com/1x-technologies/1xgpt/pull/29">Upstream PR</a>
+    <a class="nav-action" href="https://github.com/Abhishek21g/1x-world-model-workbench">GitHub</a>
   </header>
 
   <main id="top">
@@ -29,17 +29,17 @@
           <span>Model</span>
           <span>Workbench</span>
         </h1>
-        <p class="hero-text">Run receipts, rollout inspection, and action-conditioning audits for the public 1X world-model challenge.</p>
+        <p class="hero-text">A simple way to inspect 1X world-model runs, compare generated futures, and understand where robot actions fit.</p>
         <div class="hero-actions" aria-label="Primary actions">
-          <a class="button primary" href="#demo">Open demo</a>
+          <a class="button primary" href="../reports/demo/index.html">Open demo</a>
           <a class="button secondary" href="#audit">View audit</a>
         </div>
       </div>
 
       <div class="product-shell" aria-label="Workbench preview">
         <div class="toolbar">
-          <span>rollout inspection</span>
-          <span>video-only baseline</span>
+          <span>run review</span>
+          <span>prompt -> future</span>
         </div>
         <div class="rollout-grid">
           <article>
@@ -68,7 +68,7 @@
           </section>
           <section class="audit-panel">
             <h2>Action audit</h2>
-            <p>Actions are public in the dataset surface; the GENIE baseline remains video-only.</p>
+            <p>The public baseline is video-only. The audit shows where action data appears and where it currently drops out.</p>
           </section>
         </div>
       </div>
@@ -76,29 +76,32 @@
 
     <section class="section modules" aria-labelledby="does-title">
       <div class="section-heading">
-        <h2 id="does-title">What it does</h2>
-        <p>A compact contributor layer for turning challenge runs into inspectable artifacts.</p>
+        <h2 id="does-title">What you can open</h2>
+        <p>Three small artifacts make the project easy to understand without training a model.</p>
       </div>
       <div class="module-grid">
         <article>
-          <h3>Run receipts</h3>
-          <p>Capture command, checkpoint, dataset, git SHA, external-data notes, FLOPs fields, and metrics in one reproducible report.</p>
+          <h3>Demo report</h3>
+          <p>A single page showing the workbench idea: run receipt, rollout view, and action audit in one place.</p>
+          <a href="../reports/demo/index.html">Open the demo</a>
         </article>
         <article>
-          <h3>Rollout inspection</h3>
-          <p>Review prompt, generated, and ground-truth media side by side with failure tags for object consistency, contact, and action mismatch.</p>
+          <h3>Rollout viewer</h3>
+          <p>A side-by-side view for prompt, generated, and ground-truth frames with simple failure tags.</p>
+          <a href="../reports/demo/rollout_inspector.html">Open the viewer</a>
         </article>
         <article>
-          <h3>Action gap audit</h3>
-          <p>Trace where public actions are described, where <code>actions.bin</code> is recognized, and where the baseline drops action tensors.</p>
+          <h3>Action audit</h3>
+          <p>A short evidence-backed scan of where action data exists in the public repo and where it is not yet used.</p>
+          <a href="../reports/ACTION_CONDITIONING_AUDIT.md">Read the audit</a>
         </article>
       </div>
     </section>
 
     <section class="section split" id="audit" aria-labelledby="audit-title">
       <div>
-        <h2 id="audit-title">Why it matters</h2>
-        <p>The public challenge is about evaluating robot futures. The strongest contribution is not a toy model; it is tooling that helps outsiders reproduce runs, inspect generated futures, and reason about the public action-conditioning gap without overclaiming private 1X knowledge.</p>
+        <h2 id="audit-title">The simple point</h2>
+        <p>1X's public challenge is about predicting robot futures. This workbench makes those futures easier to inspect and makes one public-code gap clear: the dataset includes actions, but the released GENIE baseline is still video-only.</p>
       </div>
       <div class="evidence-table" role="table" aria-label="Action-conditioning evidence">
         <div role="row"><span role="cell">Dataset exposes raw actions</span><strong role="cell">yes</strong></div>
@@ -110,8 +113,8 @@
 
     <section class="section demo-band" id="demo" aria-labelledby="demo-title">
       <div class="section-heading">
-        <h2 id="demo-title">Launch demo</h2>
-        <p>Static, reviewable artifacts that work without a GPU or the full dataset.</p>
+        <h2 id="demo-title">Start here</h2>
+        <p>Open the demo first. It is the easiest way to see what this project is trying to become.</p>
       </div>
       <div class="demo-links">
         <a href="../reports/demo/index.html">Combined demo report</a>
@@ -120,23 +123,23 @@
       </div>
     </section>
 
-    <section class="section artifacts" id="artifacts" aria-labelledby="artifact-title">
+    <section class="section artifacts" id="about" aria-labelledby="artifact-title">
       <div class="section-heading">
-        <h2 id="artifact-title">Current artifacts</h2>
-        <p>Built around the public repo, with conservative claims and reproducible commands.</p>
+        <h2 id="artifact-title">Current status</h2>
+        <p>This is an independent public prototype. It does not claim to replace 1X internal tools.</p>
       </div>
       <div class="artifact-list">
-        <a href="https://github.com/1x-technologies/1xgpt/pull/29">
-          <span>Upstream PR</span>
-          <strong>Fix teacher-forced generation mask token</strong>
+        <a href="../docs/USEFULNESS_ASSESSMENT.md">
+          <span>Usefulness</span>
+          <strong>What this is useful for, and what it is not</strong>
         </a>
         <a href="../docs/MINIMAL_ACTION_INTERFACE.md">
-          <span>Proposal</span>
-          <strong>Minimal action interface for public-code experiments</strong>
+          <span>Next step</span>
+          <strong>A minimal action interface proposal for future experiments</strong>
         </a>
-        <a href="../docs/USEFULNESS_ASSESSMENT.md">
-          <span>Assessment</span>
-          <strong>What is useful, what is not, and what 1X likely already has</strong>
+        <a href="https://github.com/Abhishek21g/1x-world-model-workbench">
+          <span>Repository</span>
+          <strong>Source code and reports</strong>
         </a>
       </div>
     </section>
